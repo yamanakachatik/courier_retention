@@ -368,6 +368,10 @@ function ensureV2Data(){
   if(!retention || !demoRetention) return;
 
   if(!retention.categories) retention.categories=[];
+  // Temporary test card used to verify that GitHub updates reach the live retention page.
+  if(!retention.categories.some(c=>c.id==='test-chatik')){
+    retention.categories.push({id:'test-chatik',name:'тест-чатик',description:'test',group:'test',order:999,problems:[]});
+  }
   demoRetention.categories.forEach((demoCat, catIndex)=>{
     let cat = retention.categories.find(c=>c.id===demoCat.id);
     if(!cat){
