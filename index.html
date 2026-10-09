@@ -368,10 +368,6 @@ function ensureV2Data(){
   if(!retention || !demoRetention) return;
 
   if(!retention.categories) retention.categories=[];
-  // Temporary test card used to verify that GitHub updates reach the live retention page.
-  if(!retention.categories.some(c=>c.id==='test-chatik')){
-    retention.categories.push({id:'test-chatik',name:'тест-чатик',description:'test',group:'test',order:999,problems:[]});
-  }
   demoRetention.categories.forEach((demoCat, catIndex)=>{
     let cat = retention.categories.find(c=>c.id===demoCat.id);
     if(!cat){
@@ -537,7 +533,6 @@ function renderHome(){
   const agents = stages.map((s,i)=>i===0?`<div class="agent-placeholder"></div>`:`<div class="agent-card">
     ${editMode?`<input class="editable" value="${esc(s.agentName||'')}" oninput="updateStage('${s.id}','agentName',this.value)" />`:`<div class="agent-label">${s.agentName||''}</div>`}
     ${editMode?`<textarea oninput="updateStage('${s.id}','description',this.value)">${esc(s.description||'')}</textarea>`:`<div class="agent-desc">${s.description||''}</div>`}
-    ${s.id==='retention'?`<div style="display:flex;gap:8px;align-items:center;margin-top:10px"><div style="border:1px solid var(--border-subtle);border-radius:8px;padding:7px 10px;font-weight:700;background:#fff">тест-чатик</div><div style="font-size:12px;color:var(--text-secondary)">test</div></div>`:''}
   </div>`).join('');
   const html = `
     <div class="eyebrow">ПРЕДИКТИВНЫЙ ЧЕРН · ВОРОНКА</div>
