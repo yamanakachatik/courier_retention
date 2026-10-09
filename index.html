@@ -544,7 +544,7 @@ function renderHome(){
       <div class="funnel-wrap">${funnel}</div>
       <div class="agent-stack">${agents}</div>
     </div>
-    <div class="strategy"><strong>Стратегия</strong>Хотим закрыть все этапы воронки курьеров ИИ-агентами и забрать все проактивные коммуникации на курьеров; предиктивный churn — первый шаг в удержании (PRE-MVP), дальше — MVP 13 сценариев Full-сценарий.</div><div class="notice" style="margin-top:12px"><strong>Обновление базы:</strong> эта версия добавляет новые root-cause проблемы из карты «Новички — Маша» в блок «Удержание». Твои уже отредактированные строки сохраняются, а недостающие категории и проблемы автоматически добавляются. Для общей синхронизации между компьютерами используй подключённое облако.</div>
+    <div class="strategy"><strong>Стратегия</strong>Хотим закрыть все этапы воронки курьеров ИИ-агентами и забрать все проактивные коммуникации на курьеров; предиктивный churn — первый шаг в удержании (PRE-MVP), дальше — MVP 13 сценариев Full-сценарий.</div>
     ${editMode?`<div class="inline-add"><button class="btn" onclick="addStage()">+ Добавить этап</button> <button class="btn" onclick="resetDemo()">Reset to demo data</button></div>`:''}
   `;
   document.getElementById('app').innerHTML = appShell(html);
