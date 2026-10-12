@@ -649,6 +649,7 @@ function openDrawer(stageId,categoryId,problemId,risk){
       <div class="notice">${s.name} → ${c.name}</div>
       <div class="drawer-section"><h3>Risk</h3><div>${risk.toUpperCase()}</div></div>
       <div class="drawer-section"><h3>Recommended action</h3><div>${solution||'—'}</div></div>
+      <div class="drawer-section"><h3>Сообщение курьеру</h3><textarea placeholder="Напишите сообщение курьеру…" oninput="updateProblem('${s.id}','${c.id}','${p.id}','courierMessage',this.value)">${esc(p.courierMessage||'')}</textarea><button class="btn primary" onclick="saveCourierMessage()">Сохранить сообщение</button></div>
       <div class="drawer-section"><h3>Что проверить</h3>
         <ul><li>OPH / загрузку</li><li>зону и время</li><li>доступные слоты</li><li>личный baseline</li><li>eligibility механик</li></ul>
       </div>
@@ -658,6 +659,7 @@ function openDrawer(stageId,categoryId,problemId,risk){
   document.body.appendChild(el);
 }
 function closeDrawer(){ document.getElementById('drawer-root')?.remove(); }
+async function saveCourierMessage(){ await save(); closeDrawer(); }
 
 function updateStage(id,field,value){ const x=state.stages.find(s=>s.id===id); x[field]=value; markDirty(); }
 function updateCategory(sid,cid,field,value){ const c=state.stages.find(s=>s.id===sid).categories.find(c=>c.id===cid); c[field]=value; markDirty(); }
