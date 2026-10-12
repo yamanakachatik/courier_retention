@@ -598,8 +598,9 @@ function renderCategory(stageId,categoryId){
       <td class="high solution-cell" onclick="${editMode?'':'openDrawer(\''+s.id+'\',\''+c.id+'\',\''+p.id+'\',\'high\')'}">
         ${editMode?`<textarea oninput="updateProblem('${s.id}','${c.id}','${p.id}','highSolution',this.value)">${esc(p.highSolution||'')}</textarea>`:(p.highSolution||'')}
       </td>
+      <td class="courier-message-cell">${editMode?`<textarea placeholder="Напишите сообщение курьеру…" oninput="updateProblem('${s.id}','${c.id}','${p.id}','courierMessage',this.value)">${esc(p.courierMessage||'')}</textarea>`:`<div style="white-space:pre-wrap">${esc(p.courierMessage||'—')}</div>`}</td>
       ${isExternal?`<td class="money-cell"><div style="display:flex;gap:6px;justify-content:center"><button class="btn ${p.monetary===true?'primary':''}" onclick="event.stopPropagation();setMonetary('${s.id}','${c.id}','${p.id}',true)" ${editMode?'':'disabled'}>Да</button><button class="btn ${p.monetary===false?'primary':''}" onclick="event.stopPropagation();setMonetary('${s.id}','${c.id}','${p.id}',false)" ${editMode?'':'disabled'}>Нет</button></div></td>`:''}
-    </tr>`).join(''):`<tr><td colspan="4"><div class="empty">Нет подпроблем для выбранного фильтра</div></td></tr>`;
+    </tr>`).join(''):`<tr><td colspan="${isExternal?7:5}"><div class="empty">Нет подпроблем для выбранного фильтра</div></td></tr>`;
 
   const transportFilters = isTransport ? `
     <div class="transport-filter-wrap">
@@ -627,7 +628,7 @@ function renderCategory(stageId,categoryId){
     ${editMode?`<div class="notice" style="margin-bottom:12px">Перетаскивай строки за значок ⋮⋮, чтобы менять порядок подпроблем. Порядок сохранится после нажатия «Сохранить».</div>`:''}
     <div class="matrix-wrap">
       <table class="matrix">
-        <thead><tr><th>Подпроблема</th>${isExternal?'<th>Что хотим узнать</th>':''}<th class="low">Low churn</th><th class="medium">Medium churn</th><th class="high">High churn</th>${isExternal?'<th>Рассматриваем ₽-механику?</th>':''}</tr></thead>
+        <thead><tr><th>Подпроблема</th>${isExternal?'<th>Что хотим узнать</th>':''}<th class="low">Low churn</th><th class="medium">Medium churn</th><th class="high">High churn</th><th>Сообщение курьеру</th>${isExternal?'<th>Рассматриваем ₽-механику?</th>':''}</tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </div>
